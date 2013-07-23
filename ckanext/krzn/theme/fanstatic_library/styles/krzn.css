@@ -1,16 +1,16 @@
+.mandant .masthead {
+  background-color: #00008b;
+}
 .mandant.moers .masthead {
-  background-color: green !important;
+  background-color: green;
 }
 .mandant.duisburg .masthead {
-  background-color: orange !important;
+  background-color: orange;
+}
+.mandant.kamp-lintfort .masthead {
+  display: none;
 }
 .main,
 [role="main"] {
-  background-image: url('/images/texture.png');
-}
-.main::after,
-[role="main"]::after,
-.main::before,
-[role="main"]::before {
-  display: none;
+  background-color: #ggg;
 }

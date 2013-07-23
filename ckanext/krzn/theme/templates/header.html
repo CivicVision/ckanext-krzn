@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+{% block header_site_navigation %}
+  <nav class="section navigation">
+    <ul class="nav nav-pills">
+      {{ h.build_nav_main(
+        ('search', _('Datasets')),
+        ('organizations_index', _('Kommunen')),
+        ('group_index', _('Groups')),
+        ('about', _('About'))
+      ) }}
+    </ul>
+  </nav>
+{% endblock %}

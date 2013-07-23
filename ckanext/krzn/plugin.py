@@ -1,5 +1,4 @@
 import os
-import re
 
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
@@ -34,6 +33,7 @@ class KrznCustomizations(plugins.SingletonPlugin):
         toolkit.add_resource('theme/fanstatic_library', 'ckanext-krzn')
 
     def get_auth_functions(self):
+        """ Do not allow registering through the API """
         return {
             'user_create': no_registering
         }
