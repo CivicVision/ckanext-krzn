@@ -1,0 +1,16 @@
+.mandant.moers .masthead {
+  background-color: green !important;
+}
+.mandant.duisburg .masthead {
+  background-color: orange !important;
+}
+.main,
+[role="main"] {
+  background-image: url('/images/texture.png');
+}
+.main::after,
+[role="main"]::after,
+.main::before,
+[role="main"]::before {
+  display: none;
+}
