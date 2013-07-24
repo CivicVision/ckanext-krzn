@@ -4,10 +4,6 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
 
-class UnexpectedDateFormat(Exception):
-    pass
-
-
 def no_registering(context, data_dict):
     return {'success': False, 'msg': toolkit._('''You cannot register for this
         site. If you need an account, ask KRZN.''')}

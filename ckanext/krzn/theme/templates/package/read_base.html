@@ -1,0 +1,6 @@
+{% ckan_extends %}
+
+{% block bodytag %} class="mandant {{c.group_dict.name}}" data-site-root="{{ h.url('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url('/', qualified=true) }}" data-api-root="{{ g.api_url }}"{% endblock %}
+
+{% block breadcrumb_content %}
+{% endblock %}
