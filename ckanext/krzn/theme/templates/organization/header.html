@@ -1,0 +1,8 @@
+{% extends "header.html" %}
+
+{#
+Remove "Organization" from breadcrumb
+#}
+{% block breadcrumb_content %}
+  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='organization', action='read', id=c.group_dict.name %}</li>
+{% endblock %}

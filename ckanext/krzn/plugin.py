@@ -26,6 +26,8 @@ class KrznCustomizations(plugins.SingletonPlugin):
         config['extra_template_paths'] = ','.join([template_dir,
                 config.get('extra_template_paths', '')])
 
+        # set ckan.auth.create_dataset_if_not_in_organization = False
+
         toolkit.add_resource('theme/fanstatic_library', 'ckanext-krzn')
 
     def get_auth_functions(self):

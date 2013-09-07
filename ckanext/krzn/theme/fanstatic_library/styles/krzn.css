@@ -1,16 +1,22 @@
 .mandant .masthead {
   background-color: #00008b;
 }
-.mandant.moers .masthead {
+#moers .masthead {
   background-color: #fab000;
 }
-.mandant.duisburg .masthead {
+#duisburg .masthead {
   background-color: green;
 }
-.mandant.kamp-lintfort .masthead {
-  display: none;
+#kamp-lintfort .masthead {
+  background-color: purple;
 }
 .main,
 [role="main"] {
   background-color: #ggg;
+}
+.logo img {
+  max-height: 50px;
+}
+.mini-breadcrumb {
+  float: left;
 }
