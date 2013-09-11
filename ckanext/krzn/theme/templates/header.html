@@ -32,3 +32,7 @@ Move logo to header, if we are on an org page
     {{ super() }}
   {% endif %}
 {% endblock %}
+
+{% block header_account_notlogged %}
+<li>{% link_for _('Log in'), controller='user', action='login' %}</li>
+{% endblock %}
