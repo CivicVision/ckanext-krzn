@@ -8,15 +8,19 @@ Custom CKAN extension for KRZN
 
 2. Install ckanext-krzn. Activate your CKAN virtual environment and:
 
-        git clone git@github.com:okfn/ckanext-krzn.git
-        cd ckanext-krzn
-        python setup.py develop
-        pip install -r pip-requirements.txt
+```bash
+git clone git@github.com:okfn/ckanext-krzn.git
+cd ckanext-krzn
+python setup.py develop
+pip install -r pip-requirements.txt
+```
 
 3. Edit the following settings in the `[app:main]` section of your CKAN config
    file (e.g. `development.ini` or `production.ini`):
 
-        ckan.plugins = krzn
+```
+ckan.plugins = krzn
+```
 
 4. Run CKAN, e.g. `paster serve production.ini`
 
