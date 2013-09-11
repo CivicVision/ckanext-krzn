@@ -9,4 +9,18 @@
 
 .mini-breadcrumb {
 	float: left;
+	li {
+		display: inline-block;
+		&:after {
+			content: " / ";
+		}
+		a {
+			padding: 0 6px;
+			color: #D9E7EB;
+			font-weight: bold;
+			span {
+				margin: 0 2px 0 4px;
+			}
+		}
+	}
 }

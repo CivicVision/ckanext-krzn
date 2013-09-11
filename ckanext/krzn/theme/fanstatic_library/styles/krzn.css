@@ -20,3 +20,17 @@
 .mini-breadcrumb {
   float: left;
 }
+.mini-breadcrumb li {
+  display: inline-block;
+}
+.mini-breadcrumb li:after {
+  content: " / ";
+}
+.mini-breadcrumb li a {
+  padding: 0 6px;
+  color: #D9E7EB;
+  font-weight: bold;
+}
+.mini-breadcrumb li a span {
+  margin: 0 2px 0 4px;
+}

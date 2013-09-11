@@ -6,3 +6,22 @@ Remove "Organization" from breadcrumb
 {% block breadcrumb_content %}
   <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='organization', action='read', id=c.group_dict.name %}</li>
 {% endblock %}
+
+{% block header_site_navigation_tabs %}
+  {{ h.build_nav('organization_read', _('Datasets'), id=c.group_dict.name) }}
+  {{ h.build_nav('organization_activity', _('Activity Stream'), id=c.group_dict.name) }}
+  {{ h.build_nav('organization_about', _('About'), id=c.group_dict.name) }}
+{% endblock %}
+
+{#
+Search in organization instead of globally
+#}
+{% block header_site_search %}
+  <form class="section site-search simple-input" action={{ h.url(controller='organization', action='read', id=mandant.name) }} method="get">
+    <div class="field">
+      <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
+      <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />
+      <button class="btn-search" type="submit">{{ _('Search') }}</button>
+    </div>
+  </form>
+{% endblock %}

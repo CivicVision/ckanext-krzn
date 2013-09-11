@@ -1,8 +1,13 @@
 {% extends "header.html" %}
 
+{% set pkg = c.pkg_dict %}
+
 {#
 Remove "Organization" from breadcrumb
 #}
+
+{% block breadcrumb_content_selected %} class="active"{% endblock %}
+
 {% block breadcrumb_content %}
   {% if pkg %}
     {% set dataset = pkg.title or pkg.name %}
@@ -19,6 +24,12 @@ Remove "Organization" from breadcrumb
   {% endif %}
 {% endblock %}
 
+{% block header_site_navigation_tabs %}
+  {{ h.build_nav('dataset_read', _('Dataset'), id=pkg.name) }}
+  {{ h.build_nav('dataset_activity', _('Activity Stream'), id=pkg.name) }}
+  {{ h.build_nav('related_list', _('Related'), id=pkg.name) }}
+{% endblock %}
+
 {% block header_logo %}
   {% if mandant %}
     {% set url=h.url_for(controller='organization', action='read', id=mandant.name) %}
@@ -26,4 +37,17 @@ Remove "Organization" from breadcrumb
   {% else %}
     {{ super() }}
   {% endif %}
+{% endblock %}
+
+{#
+Search in organization instead of globally
+#}
+{% block header_site_search %}
+  <form class="section site-search simple-input" action={{ h.url(controller='organization', action='read', id=pkg.organization.name) }} method="get">
+    <div class="field">
+      <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
+      <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />
+      <button class="btn-search" type="submit">{{ _('Search') }}</button>
+    </div>
+  </form>
 {% endblock %}
