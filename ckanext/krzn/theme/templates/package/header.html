@@ -33,15 +33,6 @@ Use site navigation for organization instead of global one
   {{ h.build_nav('organization_about', _('About'), id=mandant.name) }}
 {% endblock %}
 
-{% block header_logo %}
-  {% if mandant %}
-    {% set url=h.url_for(controller='organization', action='read', id=mandant.name) %}
-    <a class="logo" href="{{ url }}"><img src="{{ mandant.image_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ mandant.title }} Logo" /></a>
-  {% else %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
-
 {#
 Search in organization instead of globally
 #}
