@@ -7,6 +7,9 @@ Remove "Organization" from breadcrumb
   <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='organization', action='read', id=c.group_dict.name %}</li>
 {% endblock %}
 
+{#
+Move tabs content to site navigation
+#}
 {% block header_site_navigation_tabs %}
   {{ h.build_nav('organization_read', _('Datasets'), id=c.group_dict.name) }}
   {{ h.build_nav('organization_activity', _('Activity Stream'), id=c.group_dict.name) }}

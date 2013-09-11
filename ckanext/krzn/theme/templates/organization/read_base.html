@@ -10,32 +10,8 @@ Remove breadcrumb because it is moved to the top
 {% block breadcrumb %}
 {% endblock %}
 
-
+{#
+Remove tabs as the content is moved to site nav
+#}
 {% block content_primary_nav %}
 {% endblock %}
-
-{#
-Alternative to remove the tabs and move "Admin" button
-{% block primary_content %}
-  <article class="module">
-    {% block page_header %}
-    {% endblock %}
-    <div class="module-content">
-      {% if self.content_action() | trim %}
-        <div class="content_action">
-          {% if h.check_access('organization_update', {'id': c.group_dict.id}) %}
-            {% link_for _('Admin'), controller='organization', action='edit', id=c.group_dict.name, class_='btn', icon='wrench' %}
-          {% endif %}
-        </div>
-      {% endif %}
-      {% if self.page_primary_action() | trim %}
-        <div class="page_primary_action">
-          {% block page_primary_action %}{% endblock %}
-        </div>
-      {% endif %}
-      {% block primary_content_inner %}
-      {% endblock %}
-    </div>
-  </article>
-{% endblock %}
-#}

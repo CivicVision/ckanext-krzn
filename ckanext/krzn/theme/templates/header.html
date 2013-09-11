@@ -8,6 +8,9 @@
   {% set mandant = c.pkg_dict.organization %}
 {% endif %}
 
+{#
+Breadcrumb should be moved to top left
+#}
 {% block header_account_container_begin %}
 <div class="mini-breadcrumb">
   <ol class="unstyled">
@@ -17,6 +20,9 @@
 </div>
 {% endblock %}
 
+{#
+Move logo to header, if we are on an org page
+#}
 {% block header_logo %}
   {% if mandant %}
     {% set url=h.url_for(controller='organization', action='read', id=mandant.name) %}
