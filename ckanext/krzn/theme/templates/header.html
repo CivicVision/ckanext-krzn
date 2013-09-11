@@ -11,13 +11,14 @@
 {#
 Breadcrumb should be moved to top left
 #}
-{% block header_account_container_begin %}
+{% block header_account_container_content %}
 <div class="mini-breadcrumb">
   <ol class="unstyled">
     {% snippet 'snippets/home_breadcrumb_item.html' %}
     {% block breadcrumb_content %}{% endblock %}
   </ol>
 </div>
+{{ super() }}
 {% endblock %}
 
 {#
