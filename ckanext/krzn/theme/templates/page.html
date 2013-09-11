@@ -4,5 +4,9 @@
 Remove breadcrumb because it is moved to the top
 #}
 {% block breadcrumb %}
+{% if mandant %}
 INVALID
+{% else %}
+{{ super() }}
+{% endif %}
 {% endblock %}
