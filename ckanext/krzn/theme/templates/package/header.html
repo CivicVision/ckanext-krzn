@@ -28,15 +28,20 @@ Remove "Organization" from breadcrumb
 Use site navigation for organization instead of global one
 #}
 {% block header_site_navigation_tabs %}
-  {{ h.build_nav('organization_read', _('Datasets'), id=mandant.name) }}
-  {{ h.build_nav('organization_activity', _('Activity Stream'), id=mandant.name) }}
-  {{ h.build_nav('organization_about', _('About'), id=mandant.name) }}
+  {% if pkg %}
+    {{ h.build_nav('organization_read', _('Datasets'), id=mandant.name) }}
+    {{ h.build_nav('organization_activity', _('Activity Stream'), id=mandant.name) }}
+    {{ h.build_nav('organization_about', _('About'), id=mandant.name) }}
+  {% else %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
 
 {#
 Search in organization instead of globally
 #}
 {% block header_site_search %}
+  {% if pkg %}
   <form class="section site-search simple-input" action={{ h.url(controller='organization', action='read', id=pkg.organization.name) }} method="get">
     <div class="field">
       <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
@@ -44,4 +49,7 @@ Search in organization instead of globally
       <button class="btn-search" type="submit">{{ _('Search') }}</button>
     </div>
   </form>
+  {% else %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
