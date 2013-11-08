@@ -7,6 +7,9 @@
 {% if c.pkg_dict %}
   {% set mandant = c.pkg_dict.organization %}
 {% endif %}
+{% if mandant and 'is_organization' in mandant and not mandant.is_organization %}
+  {% set mandant = None %}
+{% endif %}
 
 {#
 Breadcrumb should be moved to top left

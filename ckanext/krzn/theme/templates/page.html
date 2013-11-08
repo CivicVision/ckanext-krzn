@@ -4,6 +4,10 @@
 Remove breadcrumb because it is moved to the top
 #}
 {% block breadcrumb %}
+{% if mandant and 'is_organization' in mandant and not mandant.is_organization %}
+  {% set mandant = None %}
+{% endif %}
+
 {% if mandant %}
 INVALID
 {% else %}
