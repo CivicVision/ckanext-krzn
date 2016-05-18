@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block package_basic_fields_url %}
+  {% set available_orgs = h.organizations_available('create_dataset') %}
+  {% set domain = h.url_for(controller='package', action='read', id='', qualified=true) %}
+  {% set domain = domain|replace("http://", "")|replace("https://", "") %}
+  {% if available_orgs|length > 0 %}
+    {% set prefix = h.url_for(controller='package', action='read', id='') + available_orgs[0].name + '-' %}
+    {% set attrs = {'data-module': 'slug-preview-slug', 'data-module-prefix': domain, 'data-module-placeholder': available_orgs[0].name + '-<dataset>'} %}
+  {% else %}
+    {% set prefix = h.url_for(controller='package', action='read', id='') %}
+    {% set attrs = {'data-module': 'slug-preview-slug', 'data-module-prefix': domain, 'data-module-placeholder': '<dataset>'} %}
+  {% endif %}
+  {{ form.prepend('name', id='field-name', label=_('URL'), prepend=prefix, placeholder=_('eg. my-dataset'), value=data.name, error=errors.name, attrs=attrs, is_required=true) }}
+{% endblock %}
