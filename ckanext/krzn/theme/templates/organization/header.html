@@ -12,7 +12,7 @@ Move tabs content to site navigation
 #}
 {% block header_site_navigation_tabs %}
   {{ h.build_nav('organization_read', _('Datasets'), id=c.group_dict.name) }}
-  {{ h.build_nav('organization_activity', _('Activity Stream'), id=c.group_dict.name) }}
+  {{ h.build_nav('organization_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
   {{ h.build_nav('organization_about', _('About'), id=c.group_dict.name) }}
 {% endblock %}
 
