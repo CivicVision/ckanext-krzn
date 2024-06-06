@@ -1,26 +1,28 @@
 {% extends "header.html" %}
 
+{% set context = h.get_current_context() %}
+{% set organization = context.organization %}
 {#
 Remove "Organization" from breadcrumb
 #}
 {% block breadcrumb_content %}
-  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='organization', action='read', id=c.group_dict.name %}</li>
+  <li>{{ h.nav_link(organization.display_name|truncate(35), named_route='organization.read', id=organization.name) }}</li>
 {% endblock %}
 
 {#
 Move tabs content to site navigation
 #}
 {% block header_site_navigation_tabs %}
-  {{ h.build_nav('organization_read', _('Datasets'), id=c.group_dict.name) }}
-  {{ h.build_nav('organization_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
-  {{ h.build_nav('organization_about', _('About'), id=c.group_dict.name) }}
+  {{ h.build_nav_icon('organization.read', _('Datasets'), id=organization.name) }}
+  {{ h.build_nav_icon('organization.activity', _('Activity Stream'), id=organization.name) }}
+  {{ h.build_nav_icon('organization.about', _('About'), id=organization.name) }}
 {% endblock %}
 
 {#
 Search in organization instead of globally
 #}
 {% block header_site_search %}
-  <form class="section site-search simple-input" action={{ h.url(controller='organization', action='read', id=mandant.name) }} method="get">
+  <form class="section site-search simple-input" method="get" action="{% url_for 'organization.read', id=organization.name %}">
     <div class="field">
       <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
       <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />

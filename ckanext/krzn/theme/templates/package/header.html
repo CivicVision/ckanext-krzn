@@ -1,6 +1,8 @@
 {% extends "header.html" %}
 
-{% set pkg = c.pkg_dict %}
+{% set context = h.get_current_context() %}
+{% set pkg = context.package %}
+{% set organization = context.organization %}
 
 {#
 Remove "Organization" from breadcrumb
@@ -12,15 +14,15 @@ Remove "Organization" from breadcrumb
   {% if pkg %}
     {% set dataset = pkg.title or pkg.name %}
     {% if pkg.organization %}
-      {% set organization = pkg.organization.title or pkg.organization.name %}
-      <li>{% link_for organization|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</li>
+      {% set org_name= pkg.organization.title or pkg.organization.name %}
+      <li>{{ h.nav_link(org_name|truncate(30), named_route='organization.read', id=pkg.organization.name) }}</li>
     {% else %}
-      <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
+      <li>{{ h.nav_link(_('Datasets'), named_route='dataset.search') }}</li>
     {% endif %}
-    <li{{ self.breadcrumb_content_selected() }}>{% link_for dataset|truncate(30), controller='package', action='read', id=pkg.name %}</li>
+    <li>{{ h.nav_link(dataset|truncate(30), named_route='dataset.read', id=pkg.name) }}</li>
   {% else %}
-    <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
-    <li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
+    <li>{{ h.nav_link(_('Datasets'), named_route='dataset.search') }}</li>
+    <li>{{ h.nav_link(_('Create Dataset'), named_route='dataset.new') }}</li>
   {% endif %}
 {% endblock %}
 
@@ -42,13 +44,13 @@ Search in organization instead of globally
 #}
 {% block header_site_search %}
   {% if pkg %}
-  <form class="section site-search simple-input" action={{ h.url(controller='organization', action='read', id=pkg.organization.name) }} method="get">
-    <div class="field">
-      <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
-      <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />
-      <button class="btn-search" type="submit">{{ _('Search') }}</button>
-    </div>
-  </form>
+    <form class="section site-search simple-input" action={{ h.url_for('organization.read', id=organization.name) }} method="get">
+      <div class="field">
+        <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
+        <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />
+        <button class="btn-search" type="submit">{{ _('Search') }}</button>
+      </div>
+    </form>
   {% else %}
     {{ super() }}
   {% endif %}

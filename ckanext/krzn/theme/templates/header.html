@@ -1,11 +1,11 @@
 {% ckan_extends %}
 
 {% set mandant = False %}
-{% if c.group_dict %}
-  {% set mandant = c.group_dict %}
+{% if group_dict %}
+  {% set mandant = group_dict %}
 {% endif %}
-{% if c.pkg_dict %}
-  {% set mandant = c.pkg_dict.organization %}
+{% if pkg_dict %}
+  {% set mandant = pkg_dict.organization %}
 {% endif %}
 {% if mandant and 'is_organization' in mandant and not mandant.is_organization %}
   {% set mandant = None %}

@@ -1,6 +1,7 @@
 {% extends "organization/header.html" %}
 
-{% set organization = c.group_dict %}
+{% set context = h.get_current_context() %}
+{% set organization = context.organization %}
 
 {#
 Remove "Organization" from breadcrumb
