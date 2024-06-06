@@ -42,7 +42,7 @@ Search in organization instead of globally
 #}
 {% block header_site_search %}
   {% if pkg %}
-  <form class="section site-search simple-input" action={{ h.url(controller='organization', action='read', id=pkg.organization.name) }} method="get">
+  <form class="section site-search simple-input" action={{ h.url_for(controller='organization', action='read', id=pkg.organization.name) }} method="get">
     <div class="field">
       <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
       <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />

@@ -13,7 +13,7 @@
 
 {% block styles %}
   {{ super() }}
-  {% resource 'ckanext-krzn/styles/krzn.css' %}
+  {% asset 'ckanext-krzn/styles/krzn.css' %}
 {% endblock %}
 
 {#
@@ -24,7 +24,7 @@ different organizations/mandanten.
 {% if mandant %}
 	mandant
 {% endif %}
-" data-site-root="{{ h.url('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url('/', qualified=true) }}" data-api-root="{{ g.api_url }}"
+" data-site-root="{{ h.url_for('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url_for('/', qualified=true) }}" data-api-root="{{ g.api_url }}"
 {% if mandant %}
 	id="{{ mandant.name }}"
 {% endif %}
