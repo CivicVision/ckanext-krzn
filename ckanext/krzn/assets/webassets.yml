@@ -1,0 +1,6 @@
+krzn:
+  filters: less
+  output: krzn.css
+  contents:
+    - styles/krzn.less
+
