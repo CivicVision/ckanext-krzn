@@ -1,0 +1,57 @@
+{% extends "header.html" %}
+
+{% set context = h.get_current_context() %}
+{% set pkg = context.package %}
+{% set organization = context.organization %}
+
+{#
+Remove "Organization" from breadcrumb
+#}
+
+{% block breadcrumb_content_selected %} class="active"{% endblock %}
+
+{% block breadcrumb_content %}
+  {% if pkg %}
+    {% set dataset = pkg.title or pkg.name %}
+    {% if pkg.organization %}
+      {% set org_name= pkg.organization.title or pkg.organization.name %}
+      <li>{{ h.nav_link(org_name|truncate(30), named_route='organization.read', id=pkg.organization.name) }}</li>
+    {% else %}
+      <li>{{ h.nav_link(_('Datasets'), named_route='dataset.search') }}</li>
+    {% endif %}
+    <li>{{ h.nav_link(dataset|truncate(30), named_route='dataset.read', id=pkg.name) }}</li>
+  {% else %}
+    <li>{{ h.nav_link(_('Datasets'), named_route='dataset.search') }}</li>
+    <li>{{ h.nav_link(_('Create Dataset'), named_route='dataset.new') }}</li>
+  {% endif %}
+{% endblock %}
+
+{#
+Use site navigation for organization instead of global one
+#}
+{% block header_site_navigation_tabs %}
+  {% if pkg %}
+    {{ h.build_nav('organization_read', _('Datasets'), id=mandant.name) }}
+    {{ h.build_nav('organization_activity', _('Activity Stream'), id=mandant.name, offset=0) }}
+    {{ h.build_nav('organization_about', _('About'), id=mandant.name) }}
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{#
+Search in organization instead of globally
+#}
+{% block header_site_search %}
+  {% if pkg %}
+    <form class="section site-search simple-input" action={{ h.url_for('organization.read', id=organization.name) }} method="get">
+      <div class="field">
+        <label for="field-sitewide-search">{{ _('Search Datasets') }}</label>
+        <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search') }}" />
+        <button class="btn-search" type="submit">{{ _('Search') }}</button>
+      </div>
+    </form>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}

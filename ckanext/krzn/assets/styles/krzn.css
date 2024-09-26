@@ -1,5 +1,5 @@
 .mandant .masthead {
-  background-color: #00008b;
+  background-color: darkblue;
 }
 #moers .masthead {
   background-color: #fab000;
@@ -9,10 +9,6 @@
 }
 #kamp-lintfort .masthead {
   background-color: purple;
-}
-.main,
-[role="main"] {
-  background-color: #ggg;
 }
 .logo img {
   max-height: 50px;
