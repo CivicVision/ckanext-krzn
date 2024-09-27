@@ -31,9 +31,11 @@ Use site navigation for organization instead of global one
 #}
 {% block header_site_navigation_tabs %}
   {% if pkg %}
-    {{ h.build_nav('organization_read', _('Datasets'), id=mandant.name) }}
-    {{ h.build_nav('organization_activity', _('Activity Stream'), id=mandant.name, offset=0) }}
-    {{ h.build_nav('organization_about', _('About'), id=mandant.name) }}
+    {{ h.build_nav_icon('organization.read', _('Datasets'), id=mandant.name) }}
+    {% if h.is_activity_plugin_loaded() %}
+      {{ h.build_nav_icon('activity.organization_activity', _('Activity Stream'), id=mandant.name, offset=0) }}
+    {% endif %}
+    {{ h.build_nav_icon('organization.about', _('About'), id=mandant.name) }}
   {% else %}
     {{ super() }}
   {% endif %}

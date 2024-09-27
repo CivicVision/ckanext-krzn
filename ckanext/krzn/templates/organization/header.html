@@ -14,7 +14,9 @@ Move tabs content to site navigation
 #}
 {% block header_site_navigation_tabs %}
   {{ h.build_nav_icon('organization.read', _('Datasets'), id=organization.name) }}
-  {{ h.build_nav_icon('organization.activity', _('Activity Stream'), id=organization.name) }}
+  {% if h.is_activity_plugin_loaded() %}
+    {{ h.build_nav_icon('activity.organization_activity', _('Activity Stream'), id=organization.name, offset=0) }}
+  {% endif %}
   {{ h.build_nav_icon('organization.about', _('About'), id=organization.name) }}
 {% endblock %}
 
