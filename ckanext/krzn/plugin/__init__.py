@@ -5,6 +5,11 @@ import ckan.plugins.toolkit as toolkit
 def no_registering(context, _):
     return {'success': False, 'msg': toolkit._('''You cannot register for this site. If you need an account, ask KRZN.''')}
 
+
+def is_activity_plugin_loaded():
+        return toolkit.plugins_loaded('activity')
+
+
 def get_current_context():
     """
     Get the current context (package and organization) safely.
@@ -61,4 +66,5 @@ class KrznCustomizations(plugins.SingletonPlugin):
     def get_helpers(self):
         return {
             'get_current_context': get_current_context,
+            'is_activity_plugin_loaded': is_activity_plugin_loaded,
         }
