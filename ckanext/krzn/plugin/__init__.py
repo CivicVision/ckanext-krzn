@@ -1,13 +1,20 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import pkg_resources
 
+def check_plugin_enabled(plugin_name):
+    try:
+        pkg_resources.get_distribution(f'ckanext-{plugin_name}')
+        return True
+    except pkg_resources.DistributionNotFound:
+        return False
 
 def no_registering(context, _):
     return {'success': False, 'msg': toolkit._('''You cannot register for this site. If you need an account, ask KRZN.''')}
 
 
 def is_activity_plugin_loaded():
-        return toolkit.plugins_loaded('activity')
+        return check_plugin_enabled('activity')
 
 
 def get_current_context():
