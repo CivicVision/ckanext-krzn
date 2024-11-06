@@ -20,7 +20,9 @@
 We add the name of the organization as a css class which allows custom styles for
 different organizations/mandanten.
 #}
-{% block bodytag %} class="
+{% block bodytag %}
+{{- super() -}}
+class="
 {%- if mandant -%}
 	mandant
 {%- endif -%}

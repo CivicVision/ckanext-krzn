@@ -1,6 +1,6 @@
 import setuptools
 
-version = '0.3'
+version = '0.3.1'
 
 setuptools.setup(
     name='ckanext-krzn',
