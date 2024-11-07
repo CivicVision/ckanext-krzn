@@ -20,13 +20,14 @@
 We add the name of the organization as a css class which allows custom styles for
 different organizations/mandanten.
 #}
+{%- block htmltag -%}
+{% set lang = h.lang() %}
+<!--[if IE 9]> <html lang="{{ lang }}" class="ie9 {% if mandant %} mandant {% endif %}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang }}" {% if h.is_rtl_language()  %} dir="rtl" {% endif %} class="{% if mandant %} mandant {% endif %}"> <!--<![endif]-->
+{%- endblock -%}
 {% block bodytag %}
-{{- super() -}}
-class="
-{%- if mandant -%}
-	mandant
-{%- endif -%}
-" data-site-root="{{ h.url_for('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url_for('/', qualified=true) }}" data-api-root="{{ g.api_url }}"
+{{ super() }}
+data-site-root="{{ h.url_for('/', locale='default', qualified=true) }}" data-locale-root="{{ h.url_for('/', qualified=true) }}" data-api-root="{{ g.api_url }}"
 {% if mandant %}
 	id="{{ mandant.name }}"
 {% endif %}
